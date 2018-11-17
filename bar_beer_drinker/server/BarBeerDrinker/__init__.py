@@ -163,3 +163,38 @@ def get_beer_weeklyFilter(name):
         return make_response(str(e), 400)
     except Exception as e:
         return make_response(str(e), 500)
+
+
+@app.route('/api/drinkerTransactions/<name>', methods=['GET'])
+def get_drinker_transactions(name):
+    try:
+        if name is None:
+            raise ValueError('Drinker is not specified.')
+        drinker = database.find_drinker(name)
+        if drinker is None:
+            return make_response("No drinker found with that given name.", 404)
+        return jsonify(database.get_drinker_transactions(name))
+    except ValueError as e:
+        return make_response(str(e), 400)
+    except Exception as e:
+        return make_response(str(e), 500)
+
+
+@app.route('/api/drinker', methods=["GET"])
+def get_drinkers():
+    return jsonify(database.get_drinkers())
+
+
+@app.route('/api/drinker/<name>', methods=["GET"])
+def find_drinker(name):
+    try:
+        if name is None:
+            raise ValueError("Drinker is not specified.")
+        drinker = database.find_drinker(name)
+        if drinker is None:
+            return make_response("No drinker found with the given name.", 404)
+        return jsonify(drinker)
+    except ValueError as e:
+        return make_response(str(e), 400)
+    except Exception as e:
+        return make_response(str(e), 500)

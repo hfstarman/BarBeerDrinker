@@ -144,8 +144,23 @@ def get_beer_weeklyFilter(beer_name):
         results = [dict(row) for row in rs]
         return results
 
+def get_drinker_transactions(drinker):
+    with engine.connect() as con:
+        query = sql.text(
+                'SELECT b.item, b.barname, time_format(t.time, "%h:%i %p") as time FROM Transactions t, Bills b WHERE t.drinker = :name and t.transactionID = b.transactionID ORDER BY time_format(t.time, "%h:%i %p") asc;'
+                )
+        rs = con.execute(query, name=drinker)
+        results = [dict(row) for row in rs]
+        return results
 
+def find_drinker(name):
+    with engine.connect() as con:
+        query = sql.text(
+            "SELECT name, email, address, state FROM drinkers WHERE name = :name;"
+        )
 
-
-
-
+        rs = con.execute(query, name=name)
+        result = rs.first()
+        if result is None:
+            return None
+        return dict(result)

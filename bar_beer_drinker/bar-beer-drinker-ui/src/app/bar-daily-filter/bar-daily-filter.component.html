@@ -1,0 +1,52 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">{{ barName }}</h1>
+        <p class="bar-details" *ngIf="barDetails">
+            {{ barDetails?.address }} <span *ngIf="barDetails.address && barDetails.state">|</span> {{
+            barDetails?.state }}
+            <br>
+        </p>
+    </div>
+</div>
+
+<div class="contain">
+    <div>
+        <p-tabMenu [model]="items" [activeItem]="items[3]"></p-tabMenu>
+    </div>
+  <br>
+  <br>
+  <div id = "Monday">
+    
+  </div>
+  <br>
+  <br>
+  <div id = "Tuesday">
+    
+  </div>
+  <br>
+  <br>
+  <div id = "Wednesday">
+    
+  </div>
+  <br>
+  <br>
+  <div id = "Thursday">
+    
+  </div>
+  <br>
+  <br>
+  <div id = "Friday">
+    
+  </div>
+  <br>
+  <br>
+  <div id = "Saturday">
+    
+  </div>
+  <br>
+  <br>
+  <div id = "Sunday">
+    
+  </div>
+
+  <br>

@@ -1,0 +1,33 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">{{ beerName }}</h1>
+        <p class="beer-details" *ngIf="beerDetails">
+            {{ beerDetails?.manufacture }}
+            <br>
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="text-center"><strong>Top 10 Consumers of {{ beerName }}</strong></div>
+    <br>
+    <div>
+        <p-tabMenu [model]="items" [activeItem] = "items[2]"></p-tabMenu>
+    </div>
+    <p-table [value]="topConsumers">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Drinker</th>
+                <th>Total</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-consumer>
+            <tr>
+                <td>{{ consumer.drinker }}</td>
+                <td>{{ consumer.numBeer }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<br><br>

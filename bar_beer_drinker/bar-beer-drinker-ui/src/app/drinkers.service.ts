@@ -16,6 +16,11 @@ export interface drinkerTransactions {
   time: string;
 }
 
+export interface drinkerOrders {
+  item: string;
+  amount: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -35,6 +40,10 @@ export class DrinkersService {
 
   getDrinkerTransactions(drinker: string) {
     return this.http.get<drinkerTransactions[]>('/api/drinkerTransactions/' + drinker)
+  }
+
+  getDrinkerOrders(drinker: string) {
+    return this.http.get<drinkerOrders[]>('/api/drinkerOrders/' + drinker)
   }
 
 

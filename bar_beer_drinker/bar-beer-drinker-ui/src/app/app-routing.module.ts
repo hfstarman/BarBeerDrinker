@@ -13,6 +13,7 @@ import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerWeeklyFilterComponent } from './beer-weekly-filter/beer-weekly-filter.component';
 import { DrinkerComponent } from './drinker/drinker.component';
 import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
+import { DrinkerOrdersComponent } from './drinker-orders/drinker-orders.component';
 
 const routes: Routes = [
   {
@@ -80,6 +81,11 @@ const routes: Routes = [
     pathMatch: 'full',
     component: DrinkerDetailsComponent
   },
+  {
+    path: 'drinkerOrders/:drinker',
+    pathMatch: 'full',
+    component: DrinkerOrdersComponent
+  }
 ];
 
 @NgModule({

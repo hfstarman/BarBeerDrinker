@@ -1,0 +1,21 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{{ drinkerName }}</h1>
+    <p class="drinker-details" *ngIf="drinkerDetails">
+      {{ drinkerDetails?.address }} <span *ngIf="drinkerDetails.address && drinkerDetails.state">|</span> {{
+      drinkerDetails?.state }}
+      <br>
+      {{ drinkerDetails.email }}
+    </p>
+  </div>
+</div>
+
+<div class="contain">
+  <div>
+    <p-tabMenu [model]="items" [activeItem]="items[1]"></p-tabMenu>
+  </div>
+  <br>
+  <div id="bargraph">
+
+  </div>
+</div>

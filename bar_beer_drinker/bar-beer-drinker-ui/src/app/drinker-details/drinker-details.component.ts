@@ -51,6 +51,7 @@ export class DrinkerDetailsComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {label: 'Back', routerLink: ['/drinker']},
+      {label: 'Top Orders', routerLink: ['/drinkerOrders/' + this.drinkerName]}
     ]
   }
 

@@ -21,6 +21,7 @@ import { BeerTopConsumersComponent } from './beer-top-consumers/beer-top-consume
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerWeeklyFilterComponent } from './beer-weekly-filter/beer-weekly-filter.component';
 import { DrinkerComponent } from './drinker/drinker.component';
+import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { DrinkerComponent } from './drinker/drinker.component';
     BeerDetailsComponent,
     BeerWeeklyFilterComponent,
     DrinkerComponent,
+    DrinkerDetailsComponent,
   ],
   imports: [
     BrowserModule,

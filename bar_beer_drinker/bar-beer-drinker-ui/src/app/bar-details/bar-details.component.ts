@@ -51,7 +51,7 @@ export class BarDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      {label: 'Back', routerLink: ['/bars']},
+      {label: 'Back',routerLink: ['/bars']},
       {label: 'Top Selling',routerLink: ['/topSelling/' + this.barName]},
       {label: 'Weekly Sales',routerLink: ['/barWeeklyFilter/' + this.barName]},
       {label: 'Daily Sales',routerLink: ['/barDailyFilter/' + this.barName + '/Sunday']}

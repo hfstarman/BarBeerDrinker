@@ -23,7 +23,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-consumer>
             <tr>
+            <a routerLink = "/drinker/{{  consumer.drinker  }}">
                 <td>{{ consumer.drinker }}</td>
+            </a>
                 <td>{{ consumer.numBeer }}</td>
             </tr>
         </ng-template>

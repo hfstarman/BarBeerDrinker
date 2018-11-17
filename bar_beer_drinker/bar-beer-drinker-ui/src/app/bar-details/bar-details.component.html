@@ -6,7 +6,7 @@
             barDetails?.state }}
             <br>
         </p>
-    </div>
+    </div> 
 </div>
 
 <div class="container">
@@ -24,7 +24,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-spender>
             <tr>
+            <a routerLink = "/drinker/{{spender.drinker}}">
                 <td>{{ spender.drinker }}</td>
+            </a>
                 <td>{{ spender.total | currency }}</td>
             </tr>
         </ng-template>

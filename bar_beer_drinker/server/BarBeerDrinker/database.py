@@ -1,9 +1,25 @@
 from sqlalchemy import create_engine
 from sqlalchemy import sql
+from sqlalchemy import MetaData
+from sqlalchemy import Table
 
 from BarBeerDrinker import config
 
 engine = create_engine(config.database_uri)
+
+metadata = MetaData()
+
+metadata.reflect(bind=engine)
+Items = metadata.tables['Items']
+bars = metadata.tables['bars']
+Bills = metadata.tables['Bills']
+drinkers = metadata.tables['drinkers']
+frequents = metadata.tables['frequents']
+isOpen = metadata.tables['isOpen'] 
+likes = metadata.tables['likes']
+Sells = metadata.tables['Sells']
+Transactions = metadata.tables['Transactions']
+
 
 
 def get_bars():
@@ -212,3 +228,61 @@ def get_drinker_monthlyFilter(drinker):
         rs = con.execute(query, name=drinker)
         results = [dict(row) for row in rs]
         return results
+
+
+
+
+def insert_dbItems(a, b, c):
+        with engine.connect() as con:
+                ins = Items.insert().values(name = a, manufacture = b, type = c)
+                con.execute(ins)
+        return "Successfully inserted data into Items table"
+
+def insert_dbBars(a, b, c):
+        with engine.connect() as con:
+                ins = bars.insert().values(name = a, address = b, state = c)
+                con.execute(ins)
+        return "Successfully inserted data into Bars table"
+
+def insert_dbBills(a, b, c, d):
+        with engine.connect() as con:
+                ins = Bills.insert().values(transactionID = a, item = b, barname = c, uniqueID = d)
+                con.execute(ins)
+        return "Successfully inserted data into Bills table"
+
+def insert_dbDrinkers(a, b, c, d):
+        with engine.connect() as con:
+                ins = drinkers.insert().values(name = a, email = b, address = c, state = d)
+                con.execute(ins)
+        return "Successfully inserted data into Drinkers table"
+
+def insert_dbFrequents(a, b, c):
+        with engine.connect() as con:
+                ins = frequents.insert().values(drinker = a, email = b, barname = c)
+                con.execute(ins)
+        return "Successfully inserted data into Frequents table"
+
+def insert_dbIsOpen(a, b, c, d, e):
+        with engine.connect() as con:
+                ins = isOpen.insert().values(name = a, address = b, day = c, open = d, close = e)
+                con.execute(ins)
+        return "Successfully inserted data into isOpen table"
+
+def insert_dbLikes(a, b, c):
+        with engine.connect() as con:
+                ins = likes.insert().values(name = a, email = b, beer = c)
+                con.execute(ins)
+        return "Successfully inserted data into Likes table"
+
+def insert_dbSells(a, b, c, d):
+        with engine.connect() as con:
+                ins = Sells.insert().values(barname = a, item = b, price = c, address = d)
+                con.execute(ins)
+        return "Successfully inserted data into Sells table"
+
+def insert_dbtransactions(a, b, c, d, e, f, g):
+        with engine.connect() as con:
+                ins = Transactions.insert().values(transactionID = a, total = b, tip = c, time = d, day = e, drinker = f, email = g)
+                con.execute(ins)
+        return "Successfully inserted data into Transactions table"
+

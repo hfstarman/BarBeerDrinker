@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Insert Item, Manufacture, and Type:</span>
+    </div>
+    <input type="text" (keyup)="itemInsert($event)" class="form-control">
+    <input type="text" (keyup)="manufactureInsert($event)" class="form-control">
+    <input type="text" (keyup)="typeInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="postItems()">Submit Insertion</button>
+  </div>
+</div>

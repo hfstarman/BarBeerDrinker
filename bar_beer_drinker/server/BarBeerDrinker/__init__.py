@@ -228,3 +228,11 @@ def get_drinker_monthlyFilter(name):
         return make_response(str(e), 400)
     except Exception as e:
         return make_response(str(e), 500)
+
+@app.route('/api/modify/insertItems', methods=["POST"])
+def insert_dbItems():
+        body = json.loads(request.data)
+        name = body['name']
+        manufacture = body['manufacture']
+        type = body['price']
+        return jsonify(database.insert_dbItems(name, manufacture, type))

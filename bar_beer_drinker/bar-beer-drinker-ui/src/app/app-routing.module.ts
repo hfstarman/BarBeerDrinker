@@ -14,10 +14,11 @@ import { BeerWeeklyFilterComponent } from './beer-weekly-filter/beer-weekly-filt
 import { DrinkerComponent } from './drinker/drinker.component';
 import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
 import { DrinkerOrdersComponent } from './drinker-orders/drinker-orders.component';
+import { ModifyPageComponent } from './modify-page/modify-page.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'homepage',
     pathMatch: 'full',
     component: HomepageComponent
   },
@@ -85,6 +86,16 @@ const routes: Routes = [
     path: 'drinkerOrders/:drinker',
     pathMatch: 'full',
     component: DrinkerOrdersComponent
+  },
+  {
+    path: 'homepage/modify',
+    pathMatch: 'full',
+    component: ModifyPageComponent
+  },
+  {
+    path: 'modify/insertItems/:a/:b/:c',
+    pathMatch: 'full',
+    component: ModifyPageComponent
   }
 ];
 

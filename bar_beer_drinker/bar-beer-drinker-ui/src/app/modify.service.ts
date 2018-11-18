@@ -48,4 +48,39 @@ postInputBills(transactionID, item, barname, uniqueID){
   return this.http.post('/api/modify/insertBills', {transactionID: transactionID, item: item, barname: barname, uniqueID: uniqueID})
 }
 
+deleteInputItems(name){
+  return this.http.post('/api/modify/deleteItems', {name: name})
+}
+
+deleteInputBars(name, address){
+  return this.http.post('/api/modify/deleteBars', {name: name, address: address})
+}
+
+deleteInputDrinkers(email){
+  return this.http.post('/api/modify/deleteDrinkers', {email: email})
+}
+
+deleteFrequents(email, barname){
+  return this.http.post('/api/modify/deleteFrequents', {email: email, barname: barname})
+}
+
+deleteInputisOpen(name, address, day){
+  return this.http.post('/api/modify/deleteisOpen', {name: name, address: address, day: day})
+}
+
+deleteInputLikes(email, beer){
+  return this.http.post('/api/modify/deleteLikes', {email: email, beer: beer})
+}
+
+deleteInputSells(item, address){
+  return this.http.post('/api/modify/deleteSells', {item: item, address: address})
+}
+
+deleteInputTransactions(transactionID){
+  return this.http.post('/api/modify/deleteTransactions', {transactionID: transactionID})
+}
+
+deleteInputBills(uniqueID){
+  return this.http.post('/api/modify/deleteBills', {uniqueID: uniqueID})
+}
 }

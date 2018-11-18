@@ -245,6 +245,13 @@ def get_bar_topManu(name):
         return make_response(str(e), 500)
 
 
+@app.route('/api/patterns/pattern1', methods=["GET"])
+def get_pattern1():
+    return jsonify(database.get_pattern1())
+
+@app.route('/api/patterns/pattern2', methods=["GET"])
+def get_pattern2():
+    return jsonify(database.get_pattern2())
 
 
 
@@ -330,3 +337,73 @@ def insert_Bills():
         barname = body['barname']
         uniqueID = body['uniqueID']
         return jsonify(database.insert_billsdb(transactionID, item, barname, uniqueID))
+
+
+
+
+
+@app.route('/api/modify/deleteItems', methods=["POST"])
+def delete_items():
+        body = json.loads(request.data)
+        name = body['name']
+        return jsonify(database.delete_itemsdb(name))
+
+@app.route('/api/modify/deleteBars', methods=["POST"])
+def delete_bars():
+        body = json.loads(request.data)
+        name = body['name']
+        address = body['address']
+        return jsonify(database.delete_barsDB(name, address))
+
+@app.route('/api/modify/deleteDrinkers', methods=["POST"])
+def delete_drinkers():
+        body = json.loads(request.data)
+        email = body['email']
+        return jsonify(database.delete_drinkersDB(email))
+
+@app.route('/api/modify/deleteFrequents', methods=["POST"])
+def delete_frequents():
+        body = json.loads(request.data)
+        email = body['email']
+        barname = body['barname']
+        return jsonify(database.delete_frequentsDB(email, barname))
+
+@app.route('/api/modify/deleteisOpen', methods=["POST"])
+def delete_isOpen():
+        body = json.loads(request.data)
+        name = body['name']
+        address = body['address']
+        day = body['day']
+        return jsonify(database.delete_isOpenDB(name, address, day))
+
+@app.route('/api/modify/deleteLikes', methods=["POST"])
+def delete_likes():
+        body = json.loads(request.data)
+        email = body['email']
+        beer = body['beer']
+        return jsonify(database.delete_likesDB(email, beer))
+
+@app.route('/api/modify/deleteSells', methods=["POST"])
+def delete_Sells():
+        body = json.loads(request.data)
+        item = body['item']
+        address = body['address']
+        return jsonify(database.delete_sellsdb(item, address))
+
+@app.route('/api/modify/deleteTransactions', methods=["POST"])
+def delete_Transactions():
+        body = json.loads(request.data)
+        transactionID = body['transactionID']
+        return jsonify(database.delete_transactionsDB(transactionID))
+
+@app.route('/api/modify/deleteBills', methods=["POST"])
+def delete_Bills():
+        body = json.loads(request.data)
+        uniqueID = body['uniqueID']
+        return jsonify(database.delete_billsdb(uniqueID))
+
+@app.route('/api/modifyTest', methods=["POST"])
+def send_query():
+    body = json.loads(request.data)
+    query = body['sqlQuery']
+    return jsonify(database.request_query(query))

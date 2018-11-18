@@ -15,7 +15,6 @@ import { BarComponent } from './bar/bar.component';
 import { BarDetailsComponent } from './bar-details/bar-details.component';
 import { BarMostPopularComponent } from './bar-most-popular/bar-most-popular.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { BarSearchComponent } from './bar-search/bar-search.component';
 import { BeerComponent } from './beer/beer.component';
 import { BarWeeklyFilterComponent } from './bar-weekly-filter/bar-weekly-filter.component';
 import { BarDailyFilterComponent } from './bar-daily-filter/bar-daily-filter.component';
@@ -27,6 +26,8 @@ import { DrinkerDetailsComponent } from './drinker-details/drinker-details.compo
 import { DrinkerOrdersComponent } from './drinker-orders/drinker-orders.component';
 import { ModifyPageComponent } from './modify-page/modify-page.component';
 import { BarTopManuComponent } from './bar-top-manu/bar-top-manu.component';
+import { PatternsComponent } from './patterns/patterns.component';
+import { ModifyTestComponent } from './modify-test/modify-test.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,6 @@ import { BarTopManuComponent } from './bar-top-manu/bar-top-manu.component';
     BarDetailsComponent,
     BarMostPopularComponent,
     HomepageComponent,
-    BarSearchComponent,
     BeerComponent,
     BarWeeklyFilterComponent,
     BarDailyFilterComponent,
@@ -47,6 +47,8 @@ import { BarTopManuComponent } from './bar-top-manu/bar-top-manu.component';
     DrinkerOrdersComponent,
     ModifyPageComponent,
     BarTopManuComponent,
+    PatternsComponent,
+    ModifyTestComponent,
   ],
   imports: [
     BrowserModule,

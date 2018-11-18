@@ -4,7 +4,6 @@ import { BarComponent } from './bar/bar.component';
 import { BarDetailsComponent } from './bar-details/bar-details.component';
 import { BarMostPopularComponent } from './bar-most-popular/bar-most-popular.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { BarSearchComponent } from './bar-search/bar-search.component';
 import { BeerComponent } from './beer/beer.component';
 import { BarWeeklyFilterComponent } from './bar-weekly-filter/bar-weekly-filter.component';
 import { BarDailyFilterComponent } from './bar-daily-filter/bar-daily-filter.component';
@@ -16,6 +15,8 @@ import { DrinkerDetailsComponent } from './drinker-details/drinker-details.compo
 import { DrinkerOrdersComponent } from './drinker-orders/drinker-orders.component';
 import { ModifyPageComponent } from './modify-page/modify-page.component';
 import { BarTopManuComponent } from './bar-top-manu/bar-top-manu.component';
+import { PatternsComponent } from './patterns/patterns.component';
+import { ModifyTestComponent } from './modify-test/modify-test.component';
 
 const routes: Routes = [
   {
@@ -37,11 +38,6 @@ const routes: Routes = [
     path: 'topSelling/:bar',
     pathMatch: 'full',
     component: BarMostPopularComponent
-  },
-  {
-    path: 'bar-search',
-    pathMatch: 'full',
-    component:BarSearchComponent
   },
   {
     path: 'beers',
@@ -98,6 +94,16 @@ const routes: Routes = [
     pathMatch: 'full',
     component: ModifyPageComponent
   },
+  {
+    path: 'patterns',
+    pathMatch: 'full',
+    component: PatternsComponent
+  },
+  {
+    path: 'modifyTest',
+    pathMatch: 'full',
+    component: ModifyTestComponent
+  }
 ];
 
 @NgModule({

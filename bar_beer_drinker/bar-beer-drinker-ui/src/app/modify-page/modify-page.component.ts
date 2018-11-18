@@ -57,7 +57,7 @@ export class ModifyPageComponent implements OnInit {
   transTransactionID: number = 0;
   transTotal: number = 0;
   transTip: number = 0;
-  transTime:Date;
+  transTime: Date;
   transDay: string = '';
   transDrinker: string = '';
   transEmail: string = '';
@@ -174,28 +174,28 @@ export class ModifyPageComponent implements OnInit {
   }
 
 
-    //Transaction Insert
-    transTransactionIDInsert(event: any) {
-      this.transTransactionID = event.target.value;
-    }
-    transTotalInsert(event: any) {
-      this.transTotal = event.target.value;
-    }
-    transTipInsert(event: any) {
-      this.transTip = event.target.value;
-    }
-    transTimeInsert(event: any) {
-      this.transTime = event.target.value;
-    }
-    transDayInsert(event: any) {
-      this.transDay = event.target.value;
-    }
-    transDrinkerInsert(event: any) {
-      this.transDrinker = event.target.value;
-    }
-    transEmailInsert(event: any) {
-      this.transEmail = event.target.value;
-    }
+  //Transaction Insert
+  transTransactionIDInsert(event: any) {
+    this.transTransactionID = event.target.value;
+  }
+  transTotalInsert(event: any) {
+    this.transTotal = event.target.value;
+  }
+  transTipInsert(event: any) {
+    this.transTip = event.target.value;
+  }
+  transTimeInsert(event: any) {
+    this.transTime = event.target.value;
+  }
+  transDayInsert(event: any) {
+    this.transDay = event.target.value;
+  }
+  transDrinkerInsert(event: any) {
+    this.transDrinker = event.target.value;
+  }
+  transEmailInsert(event: any) {
+    this.transEmail = event.target.value;
+  }
 
 
   //Bills Insert
@@ -250,4 +250,40 @@ export class ModifyPageComponent implements OnInit {
     this.modifyService.postInputBills(this.billTransactionID, this.billItem, this.billBarname, this.billUniqueID).subscribe()
   }
 
+
+  deleteItems() {
+    this.modifyService.deleteInputItems(this.nameItems).subscribe()
+  }
+
+  deleteBars() {
+    this.modifyService.deleteInputBars(this.barName, this.barAddress).subscribe()
+  }
+
+  deleteDrinkers() {
+    this.modifyService.deleteInputDrinkers(this.drinkerEmail).subscribe()
+  }
+
+  deleteFrequents() {
+    this.modifyService.deleteFrequents(this.frequentsEmail, this.frequentsBarname).subscribe()
+  }
+
+  deleteisOpen() {
+    this.modifyService.deleteInputisOpen(this.isOpenName, this.isOpenAddress, this.isOpenDay).subscribe()
+  }
+
+  deleteLikes() {
+    this.modifyService.deleteInputLikes(this.likesEmail, this.likesBeer).subscribe()
+  }
+
+  deleteSells() {
+    this.modifyService.deleteInputSells(this.sellsItem, this.sellsAddress).subscribe()
+  }
+
+  deleteTransactions() {
+    this.modifyService.deleteInputTransactions(this.transTransactionID).subscribe()
+  }
+
+  deleteBills() {
+    this.modifyService.deleteInputBills(this.billUniqueID).subscribe()
+  }
 }

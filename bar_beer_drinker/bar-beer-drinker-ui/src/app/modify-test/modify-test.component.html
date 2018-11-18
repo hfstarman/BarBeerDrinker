@@ -1,0 +1,33 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">SQL Query Interface</h1>
+      <p>Please do not destory our database! :)</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Write Query Here:</span>
+      </div>
+      <input type="text" (keyup)="queryInput($event)" class="form-control">
+      <button type="button" class="btn btn-primary" (click)="postsqlQuery()">Submit Query</button>
+    </div>
+  </div>
+
+<div class="container">
+    <p-table [value]="returnedQuery">
+      <ng-template pTemplate="header">
+        <tr>
+            <th *ngFor="let col of keyValues">{{ col }}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-element>
+        <tr>
+          <td *ngFor="let col of keyValues">{{ element[col] }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+ 
+    <br><br>

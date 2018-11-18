@@ -7,6 +7,7 @@
 
 
 <div class="container">
+    <h3>Insert</h3>
   <div class="input-group">
     <div class="input-group-prepend">
       <span class="input-group-text">Insert into Items</span>
@@ -122,4 +123,111 @@
     <button type="button" class="btn btn-primary" (click)="postBills()">Submit Insertion</button>
   </div>
 </div>
+
+<br><br><br>
+<div class="container">
+  <h3>Delete</h3>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Delete from Items</span>
+    </div>
+    <input type="text" placeholder="Item Name" (keyup)="itemInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="deleteItems()">Delete</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Delete from Bars</span>
+    </div>
+    <input type="text" placeholder="Bar Name" (keyup)="barNameInsert($event)" class="form-control">
+    <input type="text" placeholder="Bar Address" (keyup)="barAddressInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="deleteBars()">Delete</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Delete from Drinkers</span>
+    </div>
+    <input type="text" placeholder="Drinker Email" (keyup)="drinkerEmailInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="deleteDrinkers()">Delete</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Delete from Frequents</span>
+    </div>
+    <input type="text" placeholder="Drinker Email" (keyup)="frequentsEmailInsert($event)" class="form-control">
+    <input type="text" placeholder="Bar Name" (keyup)="frequentsBarnameInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="deleteFrequents()">Delete</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Delete from isOpen</span>
+    </div>
+    <input type="text" placeholder="Bar Name" (keyup)="isOpenNameInsert($event)" class="form-control">
+    <input type="text" placeholder="Bar Address" (keyup)="isOpenAddressInsert($event)" class="form-control">
+    <input type="text" placeholder="Day" (keyup)="isOpenDayInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="deleteisOpen()">Delete</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Delete from Likes</span>
+    </div>
+    <input type="text" placeholder="Drinker Email" (keyup)="likesEmailInsert($event)" class="form-control">
+    <input type="text" placeholder="Beer Name" (keyup)="likesBeerInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="deleteLikes()">Delete</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Delete from Sells</span>
+    </div>
+    <input type="text" placeholder="Item" (keyup)="sellsItemInsert($event)" class="form-control">
+    <input type="text" placeholder="Address" (keyup)="sellsAddressInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="deleteSells()">Delete</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Delete from Transactions</span>
+    </div>
+    <input type="text" placeholder="TransactionID (Number)" (keyup)="transTransactionIDInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="deleteTransactions()">Delete</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Delete from Bills</span>
+    </div>
+    <input type="text" placeholder="UniqueID (Number)" (keyup)="billUniqueIDInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="deleteBills()">Delete</button>
+  </div>
+</div>
+<br><br><br>
+
+
+
+
+
+
+
+
 <br><br>

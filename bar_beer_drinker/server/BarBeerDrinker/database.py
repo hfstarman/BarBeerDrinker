@@ -240,6 +240,22 @@ def get_bar_topManu(bar):
         return results
 
 
+def get_pattern1():
+    with engine.connect() as con:
+        rs = con.execute(
+                "SELECT DISTINCT Transactions.transactionID as ViolationID, count(*) as total \
+                FROM Transactions, Bills, isOpen \
+                WHERE (Bills.barname = isOpen.name AND Transactions.day = isOpen.day AND Transactions.transactionID = Bills.transactionID \
+                AND Transactions.time < isOpen.open AND Transactions.time > isOpen.close AND isOpen.open != '00:00:00') OR (Bills.barname = isOpen.name AND Transactions.day = isOpen.day AND Transactions.transactionID = Bills.transactionID \
+                AND isOpen.open = '00:00:00' AND isOpen.close = '00:00:00');"\
+        )
+        return [dict(row) for row in rs]
+
+def get_pattern2():
+    with engine.connect() as con:
+        rs = con.execute("SELECT t1.drinker as total FROM frequents t1, drinkers t2, bars t3 WHERE t1.drinker = t2.name AND t1.barname = t3.name AND t3.state != t2.state")
+        return [dict(row) for row in rs]
+
 
 
 
@@ -320,3 +336,86 @@ def insert_billsdb(transactionID, item, barname, uniqueID):
                 ).params(transactionID = transactionID, item = item, barname = barname, uniqueID = uniqueID)
                 con.execute(sqlCommand)
                 return "Insert Complete"
+
+
+
+def delete_itemsdb(name):
+        with engine.connect() as con:
+                sqlCommand = sql.text(
+                        "DELETE FROM Items WHERE (name = :name);"
+                ).params(name = name)
+                con.execute(sqlCommand)
+                return "Delete Complete"
+
+def delete_barsDB(name, address):
+        with engine.connect() as con:
+                sqlCommand = sql.text(
+                        "DELETE FROM bars WHERE (name = :name) and (address = :address);"
+                ).params(name = name, address = address)
+                con.execute(sqlCommand)
+                return "Delete Complete"
+
+def delete_drinkersDB(email):
+        with engine.connect() as con:
+                sqlCommand = sql.text(
+                        "DELETE FROM drinkers WHERE (email = :email);"
+                ).params(email = email)
+                con.execute(sqlCommand)
+                return "Delete Complete"
+
+def delete_frequentsDB(email, barname):
+        with engine.connect() as con:
+                sqlCommand = sql.text(
+                        "DELETE FROM frequents WHERE (email = :email) and (barname = :barname);"
+                ).params(email = email, barname = barname)
+                con.execute(sqlCommand)
+                return "Delete Complete"
+
+def delete_isOpenDB(name, address, day):
+        with engine.connect() as con:
+                sqlCommand = sql.text(
+                        "DELETE FROM isOpen WHERE (name = :name) and (address = :address) and (day = :day);"
+                ).params(name = name, address = address, day = day)
+                con.execute(sqlCommand)
+                return "Delete Complete"
+
+def delete_likesDB(email, beer):
+        with engine.connect() as con:
+                sqlCommand = sql.text(
+                        "DELETE FROM likes WHERE (email = :email) and (beer = :beer);"
+                ).params(email = email, beer = beer)
+                con.execute(sqlCommand)
+                return "Delete Complete"
+
+def delete_sellsdb(item, address):
+        with engine.connect() as con:
+                sqlCommand = sql.text(
+                        "DELETE FROM Sells WHERE (item = :item) and (address = :address);"
+                ).params(item = item, address = address)
+                con.execute(sqlCommand)
+                return "Delete Complete"
+
+def delete_transactionsDB(transactionID):
+        with engine.connect() as con:
+                sqlCommand = sql.text(
+                        "DELETE FROM Transactions WHERE (transactionID = :transactionID);"
+                ).params(transactionID = transactionID)
+                con.execute(sqlCommand)
+                return "Delete Complete"
+
+def delete_billsdb(uniqueID):
+        with engine.connect() as con:
+                sqlCommand = sql.text(
+                        "DELETE FROM Bills WHERE (uniqueID = :uniqueID);"
+                ).params(uniqueID = uniqueID)
+                con.execute(sqlCommand)
+                return "Delete Complete"
+
+
+
+def request_query(query):
+    with engine.connect() as con:
+        rs = con.execute(query)
+        return [dict(row) for row in rs]
+
+

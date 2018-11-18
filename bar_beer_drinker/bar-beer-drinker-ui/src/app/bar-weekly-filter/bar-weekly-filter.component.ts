@@ -69,7 +69,8 @@ export class BarWeeklyFilterComponent implements OnInit {
       {label: 'Back',routerLink: ['/bars/' + this.barName]},
       {label: 'Top Selling',routerLink: ['/topSelling/' + this.barName]},
       {label: 'Weekly Sales'},
-      {label: 'Daily Sales', routerLink: ['/barDailyFilter/' + this.barName + '/Sunday']}
+      {label: 'Daily Sales', routerLink: ['/barDailyFilter/' + this.barName + '/Sunday']},
+      {label: 'Top Manufacture', routerLink: ['/barTopManu/' + this.barName]}
     ]
   }
 

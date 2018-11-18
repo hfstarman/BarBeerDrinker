@@ -1,11 +1,125 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Welcome to the Modify Page!</h1>
+    <p class="lead">Please be careful with inputs!</p>
+  </div>
+</div>
+
+
 <div class="container">
   <div class="input-group">
     <div class="input-group-prepend">
-      <span class="input-group-text">Insert Item, Manufacture, and Type:</span>
+      <span class="input-group-text">Insert into Items</span>
     </div>
-    <input type="text" (keyup)="itemInsert($event)" class="form-control">
-    <input type="text" (keyup)="manufactureInsert($event)" class="form-control">
-    <input type="text" (keyup)="typeInsert($event)" class="form-control">
+    <input type="text" placeholder="Item" (keyup)="itemInsert($event)" class="form-control">
+    <input type="text" placeholder="Manufacture" (keyup)="manufactureInsert($event)" class="form-control">
+    <input type="text" placeholder="Type (Beer, Food)" (keyup)="typeInsert($event)" class="form-control">
     <button type="button" class="btn btn-primary" (click)="postItems()">Submit Insertion</button>
   </div>
 </div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Insert into Bars</span>
+    </div>
+    <input type="text" placeholder="Bar Name" (keyup)="barNameInsert($event)" class="form-control">
+    <input type="text" placeholder="Bar Address" (keyup)="barAddressInsert($event)" class="form-control">
+    <input type="text" placeholder="Bar State" (keyup)="barStateInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="postBars()">Submit Insertion</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Insert into Drinkers</span>
+    </div>
+    <input type="text" placeholder="Drinker Name" (keyup)="drinkerNameInsert($event)" class="form-control">
+    <input type="text" placeholder="Drinker Email" (keyup)="drinkerEmailInsert($event)" class="form-control">
+    <input type="text" placeholder="Drinker Address" (keyup)="drinkerAddressInsert($event)" class="form-control">
+    <input type="text" placeholder="Drinker State" (keyup)="drinkerStateInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="postDrinkers()">Submit Insertion</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Insert into Frequents</span>
+    </div>
+    <input type="text" placeholder="Drinker Name" (keyup)="frequentsDrinkerInsert($event)" class="form-control">
+    <input type="text" placeholder="Drinker Email" (keyup)="frequentsEmailInsert($event)" class="form-control">
+    <input type="text" placeholder="Bar Name" (keyup)="frequentsBarnameInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="postFrequents()">Submit Insertion</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Insert into isOpen</span>
+    </div>
+    <input type="text" placeholder="Bar Name" (keyup)="isOpenNameInsert($event)" class="form-control">
+    <input type="text" placeholder="Bar Address" (keyup)="isOpenAddressInsert($event)" class="form-control">
+    <input type="text" placeholder="Day" (keyup)="isOpenDayInsert($event)" class="form-control">
+    <input type="text" placeholder="Open Hour (00:00:00)" (keyup)="isOpenOpenInsert($event)" class="form-control">
+    <input type="text" placeholder="Close Hour (00:00:00)" (keyup)="isOpenCloseInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="postisOpen()">Submit Insertion</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Insert into Likes</span>
+    </div>
+    <input type="text" placeholder="Drinker Name" (keyup)="likesNameInsert($event)" class="form-control">
+    <input type="text" placeholder="Drinker Email" (keyup)="likesEmailInsert($event)" class="form-control">
+    <input type="text" placeholder="Beer Name" (keyup)="likesBeerInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="postLikes()">Submit Insertion</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Insert into Sells</span>
+    </div>
+    <input type="text" placeholder="Bar Name" (keyup)="sellsBarnameInsert($event)" class="form-control">
+    <input type="text" placeholder="Item" (keyup)="sellsItemInsert($event)" class="form-control">
+    <input type="text" placeholder="Price" (keyup)="sellsPriceInsert($event)" class="form-control">
+    <input type="text" placeholder="Address" (keyup)="sellsAddressInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="postSells()">Submit Insertion</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Insert into Transactions</span>
+    </div>
+    <input type="text" placeholder="TransactionID (Number)" (keyup)="transTransactionIDInsert($event)" class="form-control">
+    <input type="text" placeholder="Total" (keyup)="transTotalInsert($event)" class="form-control">
+    <input type="text" placeholder="Tip" (keyup)="transTipInsert($event)" class="form-control">
+    <input type="text" placeholder="Time (DateTime Format)" (keyup)="transTimeInsert($event)" class="form-control">
+    <input type="text" placeholder="Day" (keyup)="transDayInsert($event)" class="form-control">
+    <input type="text" placeholder="Drinker" (keyup)="transDrinkerInsert($event)" class="form-control">
+    <input type="text" placeholder="Email" (keyup)="transEmailInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="postTransactions()">Submit Insertion</button>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Insert into Bills</span>
+    </div>
+    <input type="text" placeholder="Transaction ID (Number)" (keyup)="billTransactionIDInsert($event)" class="form-control">
+    <input type="text" placeholder="Item" (keyup)="billItemlInsert($event)" class="form-control">
+    <input type="text" placeholder="Barname" (keyup)="billBarnameInsert($event)" class="form-control">
+    <input type="text" placeholder="UniqueID (Num > 46k)" (keyup)="billUniqueIDInsert($event)" class="form-control">
+    <button type="button" class="btn btn-primary" (click)="postBills()">Submit Insertion</button>
+  </div>
+</div>
+<br><br>

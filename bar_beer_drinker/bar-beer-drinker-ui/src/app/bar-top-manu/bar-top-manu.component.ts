@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BarsService, Bar, barTopSelling} from '../bars.service';
+import { BarsService, Bar, barTopManu} from '../bars.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import { MenuItem } from 'primeng/api';
@@ -7,23 +7,22 @@ import { MenuItem } from 'primeng/api';
 declare const Highcharts: any;
 
 @Component({
-  selector: 'app-bar-most-popular',
-  templateUrl: './bar-most-popular.component.html',
-  styleUrls: ['./bar-most-popular.component.css']
+  selector: 'app-bar-top-manu',
+  templateUrl: './bar-top-manu.component.html',
+  styleUrls: ['./bar-top-manu.component.css']
 })
-export class BarMostPopularComponent implements OnInit {
+export class BarTopManuComponent implements OnInit {
 
   barName: string;
-  topSelling: barTopSelling[];
+  topManu: barTopManu[];
   barDetails: Bar;
 
   items: MenuItem[];
 
   constructor(
     private barService: BarsService,
-    private route: ActivatedRoute
-    ) {
-    
+    private route:ActivatedRoute
+  ) {
     route.paramMap.subscribe((paramMap) => {
       this.barName = paramMap.get('bar');
       
@@ -40,51 +39,49 @@ export class BarMostPopularComponent implements OnInit {
           }
         });
       });
-      
-      this.barService.getTopSelling(this.barName).subscribe(
-        data => {
-          console.log(data);
 
-          const beers = [];
-          const counts = [];
+      this.barService.getBarTopManu(this.barName).subscribe(
+        data => {
+          const manufacture = [];
+          const total = [];
 
           data.forEach(bar => {
-            beers.push(bar.item);
-            counts.push(bar.num);
+            manufacture.push(bar.manufacture);
+            total.push(bar.total);
           });
-            this.renderChart(beers, counts);
-        });
-    }
+          this.renderChart(manufacture, total);
+        }
+      );
+
+   }
 
   ngOnInit() {
-
     this.items = [
       {label: 'Back',routerLink: ['/bars/' + this.barName]},
       {label: 'Top Selling'},
       {label: 'Weekly Sales',routerLink: ['/barWeeklyFilter/' + this.barName]}, 
       {label: 'Daily Sales', routerLink: ['/barDailyFilter/' + this.barName + '/Sunday']},
-      {label: 'Top Manufacture', routerLink: ['/barTopManu/' + this.barName]},
+      {label: 'Top Manufacture'}
       ]
   }
-
   renderChart(beers: string[], counts: number[]) {
     Highcharts.chart('bargraph', {
       chart: {
         type: 'column'
       },
       title: {
-        text: 'Most Popular Beers'
+        text: "Top Manufacture's At This Bar"
       },
       xAxis: {
         categories: beers,
         title: {
-          text: 'Beer'
+          text: 'Manufacture'
         }
       },
       yAxis: {
         min: 0,
         title: {
-          text: 'Number of Beers'
+          text: 'Total Amount Sold'
         },
         labels: {
           overflow: 'justify'
@@ -109,4 +106,5 @@ export class BarMostPopularComponent implements OnInit {
       }]
     });
   }
+
 }

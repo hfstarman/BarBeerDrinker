@@ -30,6 +30,11 @@ export interface barDailyFilter {
   total: number;
 }
 
+export interface barTopManu {
+  manufacture: string;
+  total: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,6 +50,10 @@ export class BarsService {
 
   getBar(bar: string) {
     return this.http.get<Bar>('/api/bar/' + bar);
+  }
+
+  getBarTopManu(bar: string) {
+    return this.http.get<barTopManu[]>('/api/barTopManu/' + bar)
   }
 
   getTopSpenders(bar: string) {

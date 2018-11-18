@@ -26,6 +26,7 @@ import { DrinkerComponent } from './drinker/drinker.component';
 import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
 import { DrinkerOrdersComponent } from './drinker-orders/drinker-orders.component';
 import { ModifyPageComponent } from './modify-page/modify-page.component';
+import { BarTopManuComponent } from './bar-top-manu/bar-top-manu.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ModifyPageComponent } from './modify-page/modify-page.component';
     DrinkerDetailsComponent,
     DrinkerOrdersComponent,
     ModifyPageComponent,
+    BarTopManuComponent,
   ],
   imports: [
     BrowserModule,

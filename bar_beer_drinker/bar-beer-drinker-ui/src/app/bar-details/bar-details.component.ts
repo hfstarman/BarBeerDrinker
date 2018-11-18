@@ -54,7 +54,9 @@ export class BarDetailsComponent implements OnInit {
       {label: 'Back',routerLink: ['/bars']},
       {label: 'Top Selling',routerLink: ['/topSelling/' + this.barName]},
       {label: 'Weekly Sales',routerLink: ['/barWeeklyFilter/' + this.barName]},
-      {label: 'Daily Sales',routerLink: ['/barDailyFilter/' + this.barName + '/Sunday']}
+      {label: 'Daily Sales',routerLink: ['/barDailyFilter/' + this.barName + '/Sunday']},
+      {label: 'Top Manufacture', routerLink: ['/barTopManu/' + this.barName]}
+
     ]
   }
 

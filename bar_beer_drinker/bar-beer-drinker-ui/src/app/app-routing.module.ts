@@ -15,6 +15,7 @@ import { DrinkerComponent } from './drinker/drinker.component';
 import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
 import { DrinkerOrdersComponent } from './drinker-orders/drinker-orders.component';
 import { ModifyPageComponent } from './modify-page/modify-page.component';
+import { BarTopManuComponent } from './bar-top-manu/bar-top-manu.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,11 @@ const routes: Routes = [
     component: BeerTopConsumersComponent
   },
   {
+    path: 'barTopManu/:bar',
+    pathMatch: 'full',
+    component: BarTopManuComponent
+  },
+  {
     path: 'beers/:beer',
     pathMatch: 'full',
     component: BeerDetailsComponent
@@ -88,15 +94,10 @@ const routes: Routes = [
     component: DrinkerOrdersComponent
   },
   {
-    path: 'homepage/modify',
+    path: 'modify',
     pathMatch: 'full',
     component: ModifyPageComponent
   },
-  {
-    path: 'modify/insertItems/:a/:b/:c',
-    pathMatch: 'full',
-    component: ModifyPageComponent
-  }
 ];
 
 @NgModule({

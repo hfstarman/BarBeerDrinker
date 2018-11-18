@@ -230,59 +230,93 @@ def get_drinker_monthlyFilter(drinker):
         return results
 
 
+def get_bar_topManu(bar):
+    with engine.connect() as con:
+        query = sql.text(
+            'SELECT i.manufacture, COUNT(*) as total FROM Transactions t, Bills b, Items i WHERE t.transactionID = b.transactionID AND i.name = b.item AND i.type = "Beer" AND b.barname = :bar GROUP BY i.manufacture;'
+        )
+        rs = con.execute(query, bar=bar)
+        results = [dict(row) for row in rs]
+        return results
 
 
-def insert_dbItems(a, b, c):
+
+
+
+
+
+
+
+
+
+def insert_itemsDB(name, manufacture, type):
         with engine.connect() as con:
-                ins = Items.insert().values(name = a, manufacture = b, type = c)
-                con.execute(ins)
-        return "Successfully inserted data into Items table"
+                sqlCommand = sql.text(
+                        "INSERT INTO Items (name, manufacture, type) VALUES (:name, :manufacture, :type);"
+                ).params(name = name, manufacture = manufacture, type = type)
+                con.execute(sqlCommand)
+                return "Insert Complete"
 
-def insert_dbBars(a, b, c):
+def insert_barsDB(name, address, state):
         with engine.connect() as con:
-                ins = bars.insert().values(name = a, address = b, state = c)
-                con.execute(ins)
-        return "Successfully inserted data into Bars table"
+                sqlCommand = sql.text(
+                        "INSERT INTO bars (name, address, state) VALUES (:name, :address, :state);"
+                ).params(name = name, address = address, state = state)
+                con.execute(sqlCommand)
+                return "Insert Complete"
 
-def insert_dbBills(a, b, c, d):
+def insert_drinkersDB(name, email, address, state):
         with engine.connect() as con:
-                ins = Bills.insert().values(transactionID = a, item = b, barname = c, uniqueID = d)
-                con.execute(ins)
-        return "Successfully inserted data into Bills table"
+                sqlCommand = sql.text(
+                        "INSERT INTO drinkers (name, email, address, state) VALUES (:name, :email, :address, :state);"
+                ).params(name = name, email = email, address = address, state = state)
+                con.execute(sqlCommand)
+                return "Insert Complete"
 
-def insert_dbDrinkers(a, b, c, d):
+def insert_frequentsDB(drinker, email, barname):
         with engine.connect() as con:
-                ins = drinkers.insert().values(name = a, email = b, address = c, state = d)
-                con.execute(ins)
-        return "Successfully inserted data into Drinkers table"
+                sqlCommand = sql.text(
+                        "INSERT INTO frequents (drinker, email, barname) VALUES (:drinker, :email, :barname);"
+                ).params(drinker = drinker, email = email, barname = barname)
+                con.execute(sqlCommand)
+                return "Insert Complete"
 
-def insert_dbFrequents(a, b, c):
+def insert_isOpenDB(name, address, day, open, close):
         with engine.connect() as con:
-                ins = frequents.insert().values(drinker = a, email = b, barname = c)
-                con.execute(ins)
-        return "Successfully inserted data into Frequents table"
+                sqlCommand = sql.text(
+                        "INSERT INTO isOpen (name, address, day, open, close) VALUES (:name, :address, :day, :open, :close);"
+                ).params(name = name, address = address, day = day, open = open, close = close)
+                con.execute(sqlCommand)
+                return "Insert Complete"
 
-def insert_dbIsOpen(a, b, c, d, e):
+def insert_likesDB(name, email, beer):
         with engine.connect() as con:
-                ins = isOpen.insert().values(name = a, address = b, day = c, open = d, close = e)
-                con.execute(ins)
-        return "Successfully inserted data into isOpen table"
+                sqlCommand = sql.text(
+                        "INSERT INTO likes (name, email, beer) VALUES (:name, :email, :beer);"
+                ).params(name = name, email = email, beer = beer)
+                con.execute(sqlCommand)
+                return "Insert Complete"
 
-def insert_dbLikes(a, b, c):
+def insert_sellsdb(barname, item, price, address):
         with engine.connect() as con:
-                ins = likes.insert().values(name = a, email = b, beer = c)
-                con.execute(ins)
-        return "Successfully inserted data into Likes table"
+                sqlCommand = sql.text(
+                        "INSERT INTO Sells (barname, item, price, address) VALUES (:barname, :item, :price, :address);"
+                ).params(barname = barname, item = item, price = price, address = address)
+                con.execute(sqlCommand)
+                return "Insert Complete"
 
-def insert_dbSells(a, b, c, d):
+def insert_transactionsDB(transactionID, total, tip, time, day, drinker, email):
         with engine.connect() as con:
-                ins = Sells.insert().values(barname = a, item = b, price = c, address = d)
-                con.execute(ins)
-        return "Successfully inserted data into Sells table"
+                sqlCommand = sql.text(
+                        "INSERT INTO Transactions (transactionID, total, tip, time, day, drinker, email) VALUES (:transactionID, :total, :tip, :time, :day, :drinker, :email);"
+                ).params(transactionID = transactionID, total = total, tip = tip, time = time, day = day, drinker = drinker, email = email)
+                con.execute(sqlCommand)
+                return "Insert Complete"
 
-def insert_dbtransactions(a, b, c, d, e, f, g):
+def insert_billsdb(transactionID, item, barname, uniqueID):
         with engine.connect() as con:
-                ins = Transactions.insert().values(transactionID = a, total = b, tip = c, time = d, day = e, drinker = f, email = g)
-                con.execute(ins)
-        return "Successfully inserted data into Transactions table"
-
+                sqlCommand = sql.text(
+                        "INSERT INTO Bills (transactionID, item, barname, uniqueID) VALUES (:transactionID, :item, :barname, :uniqueID);"
+                ).params(transactionID = transactionID, item = item, barname = barname, uniqueID = uniqueID)
+                con.execute(sqlCommand)
+                return "Insert Complete"

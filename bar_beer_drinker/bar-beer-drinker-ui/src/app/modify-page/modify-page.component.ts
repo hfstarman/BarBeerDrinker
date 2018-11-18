@@ -29,7 +29,6 @@ export class ModifyPageComponent implements OnInit {
     private modifyService: ModifyService,
     private route: ActivatedRoute
   ) {
-    this.itemsInsert.name = this.item;
    }
 
   ngOnInit() {
@@ -51,7 +50,7 @@ export class ModifyPageComponent implements OnInit {
     console.log(this.manufacture);
     console.log(this.type);
     console.log(this.test)
-    this.modifyService.postInputItems(this.item, this.manufacture, this.type).subscribe()
+    this.modifyService.postInputItems(this.test).subscribe()
 
     //this.itemsInsert.name = this.item;
   }

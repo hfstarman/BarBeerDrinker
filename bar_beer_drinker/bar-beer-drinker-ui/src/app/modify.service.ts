@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export interface anything {
+  
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +14,6 @@ export class ModifyService {
   constructor(
     public http: HttpClient
   ) { }
-
 
 postInputItems(name, manufacture, type){
   return this.http.post('/api/modify', {name: name, manufacture: manufacture, type: type})

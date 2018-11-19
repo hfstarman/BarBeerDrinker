@@ -20,6 +20,16 @@ import { ModifyTestComponent } from './modify-test/modify-test.component';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'homepage'
+  },
+  {
+    path: 'static',
+    pathMatch: 'full',
+    redirectTo: 'homepage'
+  },
+  {
     path: 'homepage',
     pathMatch: 'full',
     component: HomepageComponent

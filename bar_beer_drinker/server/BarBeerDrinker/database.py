@@ -247,7 +247,7 @@ def get_pattern1():
                 FROM Transactions, Bills, isOpen \
                 WHERE (Bills.barname = isOpen.name AND Transactions.day = isOpen.day AND Transactions.transactionID = Bills.transactionID \
                 AND Transactions.time < isOpen.open AND Transactions.time > isOpen.close AND isOpen.open != '00:00:00') OR (Bills.barname = isOpen.name AND Transactions.day = isOpen.day AND Transactions.transactionID = Bills.transactionID \
-                AND isOpen.open = '00:00:00' AND isOpen.close = '00:00:00');"\
+                AND isOpen.open = '00:00:00' AND isOpen.close = '00:00:00');" 
         )
         return [dict(row) for row in rs]
 
@@ -255,6 +255,15 @@ def get_pattern2():
     with engine.connect() as con:
         rs = con.execute("SELECT t1.drinker as total FROM frequents t1, drinkers t2, bars t3 WHERE t1.drinker = t2.name AND t1.barname = t3.name AND t3.state != t2.state")
         return [dict(row) for row in rs]
+
+def editApos(string):
+	temp = ""
+	for ch in string:
+		if ch == '\'':
+			temp = temp+'\\'+ch
+		else:
+			temp = temp+ch
+	return temp
 
 
 
@@ -275,6 +284,7 @@ def insert_itemsDB(name, manufacture, type):
 
 def insert_barsDB(name, address, state):
         with engine.connect() as con:
+               # editApos(name)
                 sqlCommand = sql.text(
                         "INSERT INTO bars (name, address, state) VALUES (:name, :address, :state);"
                 ).params(name = name, address = address, state = state)
@@ -291,11 +301,27 @@ def insert_drinkersDB(name, email, address, state):
 
 def insert_frequentsDB(drinker, email, barname):
         with engine.connect() as con:
+                sqlAssertion1 = sql.text(
+                "SELECT t1.drinker FROM frequents t1, drinkers t2, bars t3 WHERE t1.drinker = t2.name AND t1.barname = t3.name AND t3.state != t2.state"
+                )
+                sqlDelete = sql.text(
+                "DELETE FROM frequents WHERE (email = :email) and (barname = :barname);"
+                ).params(email = email, barname = barname)
                 sqlCommand = sql.text(
                         "INSERT INTO frequents (drinker, email, barname) VALUES (:drinker, :email, :barname);"
                 ).params(drinker = drinker, email = email, barname = barname)
+
                 con.execute(sqlCommand)
-                return "Insert Complete"
+
+                #Execute the Assertion
+                rs1 = con.execute(sqlAssertion1)
+                if([dict(row) for row in rs1] == []):
+                        print("Good")
+                else:
+                        print("sad days...removing insert")
+                        con.execute(sqlDelete)
+                        return None #Or return whatever you need to so you know it failed
+                return [dict(row) for row in rs1]
 
 def insert_isOpenDB(name, address, day, open, close):
         with engine.connect() as con:
@@ -326,8 +352,29 @@ def insert_transactionsDB(transactionID, total, tip, time, day, drinker, email):
                 sqlCommand = sql.text(
                         "INSERT INTO Transactions (transactionID, total, tip, time, day, drinker, email) VALUES (:transactionID, :total, :tip, :time, :day, :drinker, :email);"
                 ).params(transactionID = transactionID, total = total, tip = tip, time = time, day = day, drinker = drinker, email = email)
+
+                sqlAssertion1 = sql.text("SELECT DISTINCT Transactions.transactionID as deleteID \
+                        FROM Transactions, Bills, isOpen \
+                        WHERE (Bills.barname = isOpen.name AND Transactions.day = isOpen.day AND Transactions.transactionID = Bills.transactionID  \
+                        AND Transactions.time < isOpen.open AND Transactions.time > isOpen.close AND isOpen.open != '00:00:00') OR (Bills.barname = isOpen.name AND Transactions.day = isOpen.day AND Transactions.transactionID = Bills.transactionID  \
+                        AND isOpen.open = '00:00:00' AND isOpen.close = '00:00:00'); \
+                        ") 
+
+                sqlDelete = sql.text(
+                        "DELETE FROM Transactions WHERE (transactionID = :transactionID);"
+                ).params(transactionID = transactionID)
+
                 con.execute(sqlCommand)
-                return "Insert Complete"
+
+                #Execute the Assertion
+                rs1 = con.execute(sqlAssertion1)
+                if([dict(row) for row in rs1] == []):
+                        print("Good")
+                else:
+                        print("sad days...removing insert")
+                        con.execute(sqlDelete)
+                        return None #Or return whatever you need to so you know it failed
+                return [dict(row) for row in rs1]
 
 def insert_billsdb(transactionID, item, barname, uniqueID):
         with engine.connect() as con:
@@ -417,5 +464,3 @@ def request_query(query):
     with engine.connect() as con:
         rs = con.execute(query)
         return [dict(row) for row in rs]
-
-

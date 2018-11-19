@@ -3,8 +3,9 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { MenuItem } from 'primeng/api';
-import { ModifyService } from '../modify.service'
+import { ModifyService} from '../modify.service'
 import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { ifError } from 'assert';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { PARAMETERS } from '@angular/core/src/util/decorators';
   styleUrls: ['./modify-page.component.css']
 })
 export class ModifyPageComponent implements OnInit {
+
 
   //items
   nameItems: string = '';
